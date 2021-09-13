@@ -66,7 +66,7 @@ def stat2(l_array, n_array, amount_of_rand_numbers):
     sqr_lambda_v = sum(
         [((n_array[i] - amount_of_rand_numbers * p_array[i]) ** 2) / (amount_of_rand_numbers * p_array[i]) for i in
          range(len(n_array))])
-    return p_array, sqr_lambda_v ** 0.5
+    return p_array, sqr_lambda_v
 
 
 def drawBar(min_x, max_x, h, amount_of_rand_numbers, n_array):
@@ -91,8 +91,8 @@ def main():
     logging.info(f"Хв: {x_v} Дв: {d_v} δ: {sqrt_d_v}")
     res = generatorValueOfLaplas(min_x, max_x, h, x_v, sqrt_d_v)
     logging.info(f"Ф: {res}")
-    p_array, lambda_v = stat2(res, n_array, AMOUNT_OF_RAND_NUMBER)
-    logging.info(f"LAMBDA: {lambda_v ** 0.5}")
+    p_array, sqr_lambda_v = stat2(res, n_array, AMOUNT_OF_RAND_NUMBER)
+    logging.info(f"SQR_LAMBDA: {sqr_lambda_v}")
     drawBar(min_x, max_x, h, AMOUNT_OF_RAND_NUMBER, n_array)
 
 
