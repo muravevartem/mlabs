@@ -2,6 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import logging
 
+from prettytable import PrettyTable
+
 AMOUNT_OF_RAND_NUMBER = 100
 NUMBER_OF_INTERVALS = 8
 TITLE_BAR = 'ex2_bar'
@@ -94,6 +96,13 @@ def test(min_x, max_x, h, n_array):
     return d_n, d_n * 10
 
 
+def table(min_x, h, number_of_intervals, n_array):
+    table = PrettyTable(["a[i-1]", "a[i]", "n[i]"])
+    for i in range(number_of_intervals):
+        table.add_row([min_x + h * i, min_x + h * (i + 1), n_array[i]])
+    print(table)
+
+
 def main():
     logging.basicConfig(level=logging.INFO)
     x_array = generator(AMOUNT_OF_RAND_NUMBER)
@@ -105,5 +114,6 @@ def main():
     logging.info(f"Dn: {d_n} λв: {lambda_b}")
     drawBar(min_x, max_x, h, AMOUNT_OF_RAND_NUMBER, n_array)
     drawGraph(min_x, max_x, h, n_array)
+    table(min_x, h, NUMBER_OF_INTERVALS, n_array)
 
 main()

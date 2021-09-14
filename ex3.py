@@ -3,6 +3,8 @@ import scipy.stats as stats
 import matplotlib.pyplot as plt
 import logging
 
+from prettytable import PrettyTable
+
 AMOUNT_OF_RAND_NUMBER = 100
 NUMBER_OF_INTERVALS = 8
 TITLE_BAR = 'ex3_bar'
@@ -82,6 +84,13 @@ def drawBar(min_x, max_x, h, amount_of_rand_numbers, n_array):
     plt.show()
 
 
+def table(min_x, h, number_of_intervals, n_array):
+    table = PrettyTable(["a[i-1]", "a[i]", "n[i]"])
+    for i in range(number_of_intervals):
+        table.add_row([min_x + h * i, min_x + h * (i + 1), n_array[i]])
+    print(table)
+
+
 def main():
     logging.basicConfig(level=logging.INFO)
     x_array = generator(AMOUNT_OF_RAND_NUMBER)
@@ -94,6 +103,6 @@ def main():
     p_array, sqr_lambda_v = stat2(res, n_array, AMOUNT_OF_RAND_NUMBER)
     logging.info(f"SQR_LAMBDA: {sqr_lambda_v}")
     drawBar(min_x, max_x, h, AMOUNT_OF_RAND_NUMBER, n_array)
-
+    table(min_x, h, NUMBER_OF_INTERVALS, n_array)
 
 main()
