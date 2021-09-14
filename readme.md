@@ -1,6 +1,6 @@
 # Stat labs
 
-###Install python-modules (via [Pip](https://pypi.org/project/pip/))
+### Install python-modules (via [Pip](https://pypi.org/project/pip/))
 ```
 pip install -r requirements.txt
 ```
