@@ -39,11 +39,11 @@ def intervals(x_array, count_intervals):
     return min_x_array, max_x_array, h, interval_array
 
 
-def stat(min_x, max_x, h, n_array):
+def stat(min_x, max_x, h, n_array, amount_of_rand_number):
     x_array = [min_x + (i * h + h / 2) for i in range(len(n_array))]
-    x_v = sum([x_array[i] * n_array[i] for i in range(len(n_array))]) / 100
-    d_v = sum([x_array[i] ** 2 * n_array[i] for i in range(len(n_array))]) / 100 - x_v ** 2
-    return x_v, d_v, d_v ** (1 / 2)
+    x_v = sum([x_array[i] * n_array[i] for i in range(len(n_array))]) / amount_of_rand_number
+    d_v = sum([x_array[i] ** 2 * n_array[i] for i in range(len(n_array))]) / amount_of_rand_number - x_v ** 2
+    return x_v, d_v, d_v ** (0.5)
 
 
 def fx(x, min_x, max_x, h, n_array):
@@ -77,7 +77,7 @@ def drawBar(min_x, max_x, h, amount_of_rand_numbers, n_array):
 def drawGraph(min_x, max_x, h, n_array):
     plt.title(TITLE_GRAPH_F)
     plt.grid(True)
-    x_array = np.arange(-1,2,0.001)
+    x_array = np.arange(-1, 2, 0.001)
     plt.plot(x_array, [f(x) for x in x_array])
     plt.ylabel('y')
     plt.xlabel('x')
@@ -91,6 +91,7 @@ def drawGraph(min_x, max_x, h, n_array):
     plt.xlabel('x')
     plt.savefig("ex2_graph_fx(x).svg")
     plt.show()
+
 
 def test(min_x, max_x, h, n_array):
     d_array = [f(min_x + h * x) - fx(min_x + h * x, min_x, max_x, h, n_array) for x in range(len(n_array))]
@@ -108,14 +109,16 @@ def table(min_x, h, number_of_intervals, n_array):
 def main():
     logging.basicConfig(level=logging.INFO)
     x_array = generator(AMOUNT_OF_RAND_NUMBER)
+    print([x_array[i] for i in range(12)])
     min_x, max_x, h, n_array = intervals(x_array, NUMBER_OF_INTERVALS)
     logging.info(f"Xmax: {max_x} Xmin: {min_x} h: {h}")
-    x_v, d_v, sqrt_d_v = stat(min_x, max_x, h, n_array)
+    x_v, d_v, sqrt_d_v = stat(min_x, max_x, h, n_array, AMOUNT_OF_RAND_NUMBER)
     logging.info(f"Хв: {x_v} Дв: {d_v} δ: {sqrt_d_v}")
     d_n, lambda_b = test(min_x, max_x, h, n_array)
     logging.info(f"Dn: {d_n} λв: {lambda_b}")
     drawBar(min_x, max_x, h, AMOUNT_OF_RAND_NUMBER, n_array)
     drawGraph(min_x, max_x, h, n_array)
     table(min_x, h, NUMBER_OF_INTERVALS, n_array)
+
 
 main()

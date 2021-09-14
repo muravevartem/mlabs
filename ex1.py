@@ -1,7 +1,6 @@
 import numpy as np
 from prettytable import PrettyTable
 import math
-import matplotlib.pyplot as plt
 import logging
 
 AMOUNT_OF_RAND_NUMBER = 100
@@ -62,7 +61,7 @@ def test(w_array, p_array, n):
 
 
 def stat(w_array, e_array):
-    x_v = sum([(i+1) * w_array[i] for i in range(len(w_array))]) / 100
+    x_v = sum([(i + 1) * w_array[i] for i in range(len(w_array))]) / 100
     d_v = sum([((i + 1) - x_v) ** 2 * w_array[i] for i in range(len(w_array))]) / 100
     return x_v, d_v, d_v ** 0.5
 
@@ -86,7 +85,6 @@ def main():
     sqr_x = test(w_array, p_array, AMOUNT_OF_RAND_NUMBER)
     logging.info(f"X: {math.sqrt(sqr_x)}")
     table(e_array, w_array)
-
 
 
 main()
