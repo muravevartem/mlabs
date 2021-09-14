@@ -25,6 +25,8 @@ def getIndexInterval(x, min_x, max_x, h):
     while x_start_interval <= max_x:
         if x_start_interval <= x <= x_start_interval + h:
             return counter
+        if x <= max_x < x_start_interval + 2 * h:
+            return counter
         x_start_interval, counter = x_start_interval + h, counter + 1
     raise Exception(f"Illegal argument 'x': {x}")
 
@@ -104,5 +106,6 @@ def main():
     logging.info(f"SQR_LAMBDA: {sqr_lambda_v}")
     drawBar(min_x, max_x, h, AMOUNT_OF_RAND_NUMBER, n_array)
     table(min_x, h, NUMBER_OF_INTERVALS, n_array)
+
 
 main()
