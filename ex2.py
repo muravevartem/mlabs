@@ -12,7 +12,7 @@ TITLE_GRAPH_FX = 'F*(x)'
 
 
 def generator(amount_of_rand_number):
-    return np.random.rand(amount_of_rand_number)
+    return np.random.rand(amount_of_rand_number) ** (2/3)
 
 
 def getIndexInterval(x, min_x, max_x, h):
@@ -21,7 +21,7 @@ def getIndexInterval(x, min_x, max_x, h):
     while x_start_interval <= max_x:
         if x_start_interval <= x <= x_start_interval + h:
             return counter
-        if x <= max_x < x_start_interval + 2 * h:
+        if x == max_x:
             return counter
         x_start_interval, counter = x_start_interval + h, counter + 1
     raise Exception(f"Illegal argument 'x': {x}")
@@ -70,6 +70,9 @@ def drawBar(min_x, max_x, h, amount_of_rand_numbers, n_array):
     plt.ylabel('nₗ / np')
     plt.bar(x, y, width=h, color='lavender', edgecolor='black', align='edge')
     plt.xticks(np.arange(0, 1.1, 0.1))
+    #x = np.arange(0,1,0.01)
+    #y = [3/2*x**0.5 for x in x]
+    #plt.plot(x,y)
     plt.savefig("ex2_bar.svg")
     plt.show()
 
