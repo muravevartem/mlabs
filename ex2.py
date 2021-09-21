@@ -19,7 +19,7 @@ def getIndexInterval(x, min_x, max_x, h):
     x_start_interval = min_x
     counter = 0
     while x_start_interval <= max_x:
-        if x_start_interval <= x <= x_start_interval + h:
+        if x_start_interval <= x < x_start_interval + h:
             return counter
         if x == max_x:
             return counter
@@ -52,7 +52,7 @@ def fx(x, min_x, max_x, h, n_array):
     if x > 1 - h:
         return 1
     interval = getIndexInterval(x, min_x, max_x, h) + 1
-    return sum([n_array[i] for i in range(interval)]) / 100
+    return sum([n_array[i] for i in range(interval)]) / AMOUNT_OF_RAND_NUMBER
 
 
 def f(x):
