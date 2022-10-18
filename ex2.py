@@ -1,6 +1,8 @@
 import numpy as np
 import logging
 
+logging.basicConfig(level=logging.INFO)
+
 AMOUNT_OF_RAND_NUMBER = 100
 NUMBER_OF_INTERVALS = 8
 
@@ -62,7 +64,6 @@ def test(min_x, max_x, h, n_array):
 
 
 def main():
-    logging.basicConfig(level=logging.INFO)
     x_array = generator(AMOUNT_OF_RAND_NUMBER)
     print([x_array[i] for i in range(12)])
     min_x, max_x, h, n_array = intervals(x_array, NUMBER_OF_INTERVALS)
