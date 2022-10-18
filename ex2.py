@@ -6,10 +6,10 @@ NUMBER_OF_INTERVALS = 8
 
 
 def generator(amount_of_rand_number):
-    return [(1 - (1 - u**2)**0.5)/u for u in np.random.rand(amount_of_rand_number)]
+    return [(1 - (1 - u ** 2) ** 0.5) / u for u in np.random.rand(amount_of_rand_number)]
 
 
-def getIndexInterval(x, min_x, max_x, h):
+def get_index_interval(x, min_x, max_x, h):
     x_start_interval = min_x
     counter = 0
     while x_start_interval <= max_x:
@@ -27,7 +27,7 @@ def intervals(x_array, count_intervals):
     h = (max_x_array - min_x_array) / count_intervals
     interval_array = [0 for i in range(count_intervals)]
     for x in x_array:
-        index = getIndexInterval(x, min_x_array, max_x_array, h)
+        index = get_index_interval(x, min_x_array, max_x_array, h)
         logging.info(f"X: {x} INDEX: {index}")
         interval_array[index] += 1
     return min_x_array, max_x_array, h, interval_array
@@ -45,7 +45,7 @@ def fx(x, min_x, max_x, h, n_array):
         return 0
     if x > 1 - h:
         return 1
-    interval = getIndexInterval(x, min_x, max_x, h) + 1
+    interval = get_index_interval(x, min_x, max_x, h) + 1
     return sum([n_array[i] for i in range(interval)]) / AMOUNT_OF_RAND_NUMBER
 
 
